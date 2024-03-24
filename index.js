@@ -5,6 +5,7 @@ import Product from "./models/product.model.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const app = express();
 //middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 //my product route
 app.use("/products", productRoutes);
