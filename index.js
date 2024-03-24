@@ -10,10 +10,16 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+
 //middleware
 app.use(express.json());
-app.use(cookieParser());
 app.use(cors());
+app.use(cookieParser());
+
+// const CorsOptions  = {
+//   origin: "https://ecommerce-server-tqqu.onrender.com",
+//   optionsSuccessStatus: 200
+// }
 
 //my product route
 app.use("/products", productRoutes);
