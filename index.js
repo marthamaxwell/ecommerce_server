@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Product from "./models/product.model.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
@@ -10,23 +9,22 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+const dB = process.env.DATABASE_URL;
+const myPort = process.env.PORT;
 
 //middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
-
-// const CorsOptions  = {
-//   origin: "https://ecommerce-server-tqqu.onrender.com",
-//   optionsSuccessStatus: 200
-// }
 
 //my product route
 app.use("/products", productRoutes);
 app.use("/user", userRoutes);
-
-const dB = process.env.DATABASE_URL;
-const myPort = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("Hello world from web dev class of backend developers ");

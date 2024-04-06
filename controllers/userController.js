@@ -3,11 +3,11 @@ import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
 
 const register = async (req, res) => {
+  console.log(req.body);
   try {
-    const { name, username, password, sex, email, bio, phone_number } =
-      req.body;
+    const { name, username, password, email } = req.body;
 
-    if (!name || !email || !username || !sex || !password) {
+    if (!name || !email || !username || !password) {
       res.status(400).json({
         success: false,
         message: "All required field needed.",
@@ -60,7 +60,6 @@ const register = async (req, res) => {
       name,
       email,
       username,
-      sex,
     });
     res.status(201).json({
       success: true,
@@ -129,7 +128,8 @@ const login = async (req, res) => {
     httponly: true,
     secure: true,
     sameSite: "none",
-    maxAge: 5 * 60 * 1000,
+    // maxAge: 5 * 60 * 1000,
+    maxAge: 30 * 1000,
   });
 
   res.cookie("hellobro", refreshToken, {

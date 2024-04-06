@@ -25,11 +25,6 @@ const userSchema = mongoose.Schema(
       unique: true,
     },
 
-    sex: {
-      type: String,
-      required: [true, "Please enter your gendet"],
-    },
-
     bio: {
       type: String,
       default: "",

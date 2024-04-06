@@ -5,7 +5,9 @@ import {
   validateToken,
 } from "../controllers/userController.js";
 
+
 const router = express.Router();
+
 
 router.post("/register", register);
 
